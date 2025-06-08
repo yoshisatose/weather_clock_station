@@ -2,26 +2,23 @@ import subprocess
 import pickle
 from time import sleep
 from random import random, choice
-
 from modules_forecast.servo_rotation import move_to_position
 
 
-def read_forecast_loudly():
-
-	forecast = pickle.load(open('data/forecast.pkl', 'rb'))
-	#forecast = {}
-	#print(forecast)
+def rotate_servo_and_read_forecast():
+	forecast = pickle.load(open('data/forecast.pkl', 'rb'))		
 	if not forecast:
 		subprocess.run(['aplay', 'voice_data/wav/weather_error.wav', '-q'])
-		return
+	weather = forecast['result']
+	move_to_position(weather)
+	read_forecast_loudly(forecast)
 
+
+def read_forecast_loudly(forecast):
 	target = forecast['target']
 	weather = forecast['result']
 	max_temperature = forecast['max_temperature']
 	min_temperature = forecast['min_temperature']
-
-	#print(target, weather, max_temperature, min_temperature)
-	move_to_position(weather)
 
 	if target == 'today':
 		subprocess.run(['aplay', 'voice_data/wav/weather_kyounonicchuunotenkiwa.wav', '-q'])

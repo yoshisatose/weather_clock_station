@@ -1,7 +1,7 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-from modules_forecast.read_forecast_loudly import read_forecast_loudly
+from modules_forecast.rotate_servo_and_read_forecast import rotate_servo_and_read_forecast
 from modules_forecast.servo_rotation import keep_position
 from modules_clock.read_clock import clock_jp, clock_sv
 
@@ -18,15 +18,17 @@ weather = None
 try:
 	while True:
 		if GPIO.input(23) == GPIO.HIGH:
-			print('read_forecast_loudly')
+			print('rotate_servo_and_read_forecast')
 			GPIO.output(26, GPIO.HIGH)
-			weather = read_forecast_loudly()
+			weather = rotate_servo_and_read_forecast()
 			GPIO.output(26, GPIO.LOW)
+			
 		if GPIO.input(24) == GPIO.HIGH:
 			print('clock_jp')
 			GPIO.output(26, GPIO.HIGH)
 			clock_jp()
 			GPIO.output(26, GPIO.LOW)
+			
 		if GPIO.input(25) == GPIO.HIGH:
 			print('clock_sv')
 			GPIO.output(26, GPIO.HIGH)
