@@ -3,7 +3,7 @@ import pickle
 from time import sleep
 from random import random, choice
 
-from modules_forecast.servo import move_to_position
+from modules_forecast.servo_rotation import move_to_position
 
 
 def read_forecast_loudly():

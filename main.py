@@ -2,7 +2,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 
 from modules_forecast.read_forecast_loudly import read_forecast_loudly
-from modules_forecast.servo import keep_position
+from modules_forecast.servo_rotation import keep_position
 from modules_clock.read_clock import clock_jp, clock_sv
 
 #GPIO.cleanup()

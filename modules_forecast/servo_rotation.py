@@ -42,8 +42,4 @@ def move_to_position(weather):
 def keep_position(weather=None):
 	if weather:
 		pi.set_servo_pulsewidth(GPIO_PIN, weather_to_degree[weather])
-
-
-# for weather in weather_to_degree.keys():
-# 	keep_position(weather)
-# 	time.sleep(1)
+		
