@@ -1,6 +1,5 @@
 import tm1637
 import time
-import datetime
 
 tm = tm1637.TM1637(clk=5, dio=4)
 
@@ -44,28 +43,10 @@ def display(digit1, digit2, digit3, digit4, colon):
 
 
 if __name__ == "__main__":
-	while True:
-		timestamp = datetime.datetime.now()
-		hour = timestamp.hour
-		minute = timestamp.minute
-
-		if hour > 12:
-			hour -= 12
-		if hour >= 10:
-			digit1 = str(1)
-			digit2 = str(hour - 10)
-		else:
-			digit1 = ' '
-			digit2 = str(hour)
-
-		if minute >= 10:
-			digit3 = str(minute // 10)
-			digit4 = str(minute % 10)
-		else:
-			digit3 = str(0)
-			digit4 = str(minute)
-
-		display(digit1, digit2, digit3, digit4, True)
-		time.sleep(1)
-		display(digit1, digit2, digit3, digit4, False)
-		time.sleep(1)
+	display(1, 2, 8, 9, True)
+	time.sleep(5)
+	display(9, 8, 5, 4, False)
+	time.sleep(5)
+	display('', 6, None, 7, False)
+	time.sleep(5)
+	display(0, None, 4, ' ', True)
